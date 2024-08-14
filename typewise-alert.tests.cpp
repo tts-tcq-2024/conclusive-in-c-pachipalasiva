@@ -3,7 +3,7 @@
 
 TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLimits) {
   // Test for inferBreach function
-  void test_inferBreach() {
+  void inferBreach() {
   TemperatureRange range = {0, 35};
 
   assert(inferBreach(-1, range) == TOO_LOW);
