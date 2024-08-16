@@ -3,7 +3,6 @@
 
 TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLimits) {
   // Test for inferBreach function
-  TemperatureRange range = {20, 30};
-  ASSERT_EQ(inferBreach(12, range), TOO_LOW);
+  EXPECT_EQ(inferBreach(-1,35), TOO_LOW);
 }
 
