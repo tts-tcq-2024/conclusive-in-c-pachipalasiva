@@ -1,10 +1,6 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
-typedef struct {
-  int lowerLimit;
-  int upperLimit;
-} TemperatureRange;
 
 // Function to get the temperature range based on cooling type
 TemperatureRange getTemperatureRange(CoolingType coolingType) {
