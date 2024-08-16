@@ -6,8 +6,8 @@ TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLimits) {
   void inferBreach() {
   TemperatureRange range = {0, 35};
 
-   ASSERT_EQ(inferBreach(12, 20, 30), TOO_LOW);
-   ASSERT_EQ(inferBreach(25, 20, 30), NORMAL);
-   ASSERT_EQ(inferBreach(35, 20, 30), TOO_HIGH);
+   ASSERT_EQ(inferBreach(12, 20), TOO_LOW);
+   ASSERT_EQ(inferBreach(25, 20), NORMAL);
+   ASSERT_EQ(inferBreach(35, 20), TOO_HIGH);
 }
 }
