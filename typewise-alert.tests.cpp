@@ -1,8 +1,7 @@
 #include <gtest/gtest.h>
 #include "typewise-alert.h"
 
-TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLimits) {
-  // Test for inferBreach function
-  EXPECT_EQ(inferBreach(-1,35), TOO_LOW);
+TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLow) {
+  TemperatureRange range = {0, 35};  // lower limit 0, upper limit 35
+  EXPECT_EQ(inferBreach(-1, range), TOO_LOW);
 }
-
