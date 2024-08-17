@@ -29,6 +29,17 @@ TEST(TypewiseAlertTest, ClassifyTemperatureBreachHiActiveCooling) {
     EXPECT_EQ(classifyTemperatureBreach(HI_ACTIVE_COOLING, 46), TOO_HIGH);
 }
 
+TEST(TypewiseAlertTest, ControllerAlertNormalBreach) {
+    AlertTarget alertTarget = TO_CONTROLLER;
+    BatteryCharacter batteryChar = {PASSIVE_COOLING};
+    double temperatureInC = 20.0;
+    
+    // Mock classifyTemperatureBreach to return NORMAL
+    // Mock sendToController
+    checkAndAlert(alertTarget, batteryChar, temperatureInC);
+    // Assert that sendToController was called with NORMAL
+}
+
 TEST(TypewiseAlertTest, ClassifyTemperatureBreachMedActiveCooling) {
     EXPECT_EQ(classifyTemperatureBreach(MED_ACTIVE_COOLING, -1), TOO_LOW);
     EXPECT_EQ(classifyTemperatureBreach(MED_ACTIVE_COOLING, 0), NORMAL);
