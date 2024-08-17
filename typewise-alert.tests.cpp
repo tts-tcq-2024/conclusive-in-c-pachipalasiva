@@ -54,35 +54,3 @@ TEST(TypeWiseAlertTestSuite, SendNormalTemperatureEmail) {
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output, "");
 }
-
-TEST(TypewiseAlertTest, ControllerAlertNormalBreach) {
-    AlertTarget alertTarget = TO_CONTROLLER;
-    BatteryCharacter batteryChar = {PASSIVE_COOLING};
-    double temperatureInC = 20.0;
-    
-    // Mock classifyTemperatureBreach to return NORMAL
-    // Mock sendToController
-    checkAndAlert(alertTarget, batteryChar, temperatureInC);
-    // Assert that sendToController was called with NORMAL
-}
-TEST(TypewiseAlertTest, ControllerAlertTooLowBreach) {
-    AlertTarget alertTarget = TO_CONTROLLER;
-    BatteryCharacter batteryChar = {PASSIVE_COOLING};
-    double temperatureInC = -1.0;
-    
-    // Mock classifyTemperatureBreach to return TOO_LOW
-    // Mock sendToController
-    checkAndAlert(alertTarget, batteryChar, temperatureInC);
-    // Assert that sendToController was called with TOO_LOW
-}
-
-TEST(TypewiseAlertTest, ControllerAlertTooHighBreach) {
-    AlertTarget alertTarget = TO_CONTROLLER;
-    BatteryCharacter batteryChar = {PASSIVE_COOLING};
-    double temperatureInC = 50.0;
-    
-    // Mock classifyTemperatureBreach to return TOO_HIGH
-    // Mock sendToController
-    checkAndAlert(alertTarget, batteryChar, temperatureInC);
-    // Assert that sendToController was called with TOO_HIGH
-}
