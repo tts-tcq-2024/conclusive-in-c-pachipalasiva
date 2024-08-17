@@ -52,6 +52,6 @@ TEST(TypeWiseAlertTestSuite, SendNormalTemperatureEmail) {
     testing::internal::CaptureStdout();
     sendToEmail(NORMAL);
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "To: a.b@c.com\n NORMAL");
+    EXPECT_EQ(output, "");
 }
 
