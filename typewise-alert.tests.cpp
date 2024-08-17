@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "typewise-alert.h"
 #include <gmock/gmock.h>
+#include <sstream>
+#include <iostream>
 
 TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLow) {
   TemperatureRange range = {0, 35};  // lower limit 0, upper limit 35
