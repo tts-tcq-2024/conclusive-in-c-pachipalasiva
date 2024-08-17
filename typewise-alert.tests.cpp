@@ -36,3 +36,10 @@ TEST(TypewiseAlertTest, ClassifyTemperatureBreachMedActiveCooling) {
     EXPECT_EQ(classifyTemperatureBreach(MED_ACTIVE_COOLING, 41), TOO_HIGH);
 }
 
+TEST(TypeWiseAlertTestSuite, SendsLowTemperatureEmail) {
+    testing::internal::CaptureStdout();
+    sendToEmail(TOO_LOW);
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "To: a.b@c.com\nHi, the temperature is too low\n");
+}
+
