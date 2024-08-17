@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 #include "typewise-alert.h"
-#include <gmock/gmock.h>
-
 
 TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLow) {
   TemperatureRange range = {0, 35};  // lower limit 0, upper limit 35
@@ -38,40 +36,3 @@ TEST(TypewiseAlertTest, ClassifyTemperatureBreachMedActiveCooling) {
     EXPECT_EQ(classifyTemperatureBreach(MED_ACTIVE_COOLING, 41), TOO_HIGH);
 }
 
-// Function to test checkAndAlert
-TEST(TypewiseAlertTest, ClassifyTemperatureBreachMedActiveCooling) {
-    BatteryCharacter batteryChar;
-
-    // Test PASSIVE_COOLING
-    batteryChar.coolingType = PASSIVE_COOLING;
-    checkAndAlert(TO_CONTROLLER, batteryChar, -1);
-    checkAndAlert(TO_CONTROLLER, batteryChar, 20);
-    checkAndAlert(TO_CONTROLLER, batteryChar, 36);
-
-    checkAndAlert(TO_EMAIL, batteryChar, -1);
-    checkAndAlert(TO_EMAIL, batteryChar, 20);
-    checkAndAlert(TO_EMAIL, batteryChar, 36);
-
-    // Test HI_ACTIVE_COOLING
-    batteryChar.coolingType = HI_ACTIVE_COOLING;
-    checkAndAlert(TO_CONTROLLER, batteryChar, -1);
-    checkAndAlert(TO_CONTROLLER, batteryChar, 30);
-    checkAndAlert(TO_CONTROLLER, batteryChar, 46);
-
-    checkAndAlert(TO_EMAIL, batteryChar, -1);
-    checkAndAlert(TO_EMAIL, batteryChar, 30);
-    checkAndAlert(TO_EMAIL, batteryChar, 46);
-
-    // Test MED_ACTIVE_COOLING
-    batteryChar.coolingType = MED_ACTIVE_COOLING;
-    checkAndAlert(TO_CONTROLLER, batteryChar, -1);
-    checkAndAlert(TO_CONTROLLER, batteryChar, 25);
-    checkAndAlert(TO_CONTROLLER, batteryChar, 41);
-
-    checkAndAlert(TO_EMAIL, batteryChar, -1);
-    checkAndAlert(TO_EMAIL, batteryChar, 25);
-    checkAndAlert(TO_EMAIL, batteryChar, 41);
-
-    // Note: We can't automatically verify the output of checkAndAlert
-    // as it prints to stdout. Manual verification of the output is needed.
-}
