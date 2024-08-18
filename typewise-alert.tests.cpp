@@ -54,3 +54,28 @@ TEST(TypeWiseAlertTestSuite, SendNormalTemperatureEmail) {
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output, "");
 }
+
+// Test sendToController function
+// Test case for sending TOO_LOW breach type to controller
+TEST(SendToControllerTest, SendsTooLowBreach) {
+    testing::internal::CaptureStdout();
+    sendToController(TOO_LOW);  // Assuming TOO_LOW is represented by 0
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "feed : 0\n");
+}
+
+// Test case for sending TOO_HIGH breach type to controller
+TEST(SendToControllerTest, SendsTooHighBreach) {
+    testing::internal::CaptureStdout();
+    sendToController(TOO_HIGH);  // Assuming TOO_HIGH is represented by 1
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "feed : 1\n");
+}
+
+// Test case for sending NORMAL breach type to controller
+TEST(SendToControllerTest, SendsNormalBreach) {
+    testing::internal::CaptureStdout();
+    sendToController(NORMAL);  // Assuming NORMAL is represented by 2
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "feed : 2\n");
+}
