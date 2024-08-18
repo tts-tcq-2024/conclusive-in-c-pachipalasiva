@@ -19,6 +19,8 @@ typedef struct {
 
 BreachType inferBreach(double value, TemperatureRange range);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
+TemperatureRange getTemperatureRange(CoolingType coolingType);
+
 
 typedef enum {
   TO_CONTROLLER,
