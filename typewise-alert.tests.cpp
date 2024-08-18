@@ -99,28 +99,31 @@ TEST(TemperatureRangeTest, GetTemperatureRange) {
     EXPECT_EQ(range.upperLimit, 40);
 }
 // Test checkAndAlert function
-TEST(TypeWiseAlertTestSuite, CheckAndAlertToController) {   // Assuming TOO_HIGH corresponds to 2
-    BatteryCharacter batteryChar = {PASSIVE_COOLING, "BrandX"};
-    testing::internal::CaptureStdout();
-    checkAndAlert(TO_CONTROLLER, batteryChar, 36);
-    std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "feed : 2\n");
-}
-
-TEST(TypeWiseAlertTestSuite, CheckAndAlertToControllerTooLow) {   // Assuming TOO_LOW corresponds to 1
-    BatteryCharacter batteryChar = {PASSIVE_COOLING, "BrandX"};
-    testing::internal::CaptureStdout();
-    checkAndAlert(TO_CONTROLLER, batteryChar, -1);
-    std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "feed : 1\n"); 
-}
-
-TEST(TypeWiseAlertTestSuite, CheckAndAlertToControllerNormal) {   // Assuming NORMAL corresponds to 0
+// Test case for checkAndAlert to controller with normal temperature
+TEST(TypeWiseAlertTestSuite, CheckAndAlertToControllerNormal) {
     BatteryCharacter batteryChar = {PASSIVE_COOLING, "BrandX"};
     testing::internal::CaptureStdout();
     checkAndAlert(TO_CONTROLLER, batteryChar, 30);
     std::string output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, "feed : 0\n"); 
+    EXPECT_EQ(output, "feed : 0\n");  // NORMAL corresponds to 0
+}
+
+// Test case for checkAndAlert to controller with high temperature
+TEST(TypeWiseAlertTestSuite, CheckAndAlertToControllerHigh) {
+    BatteryCharacter batteryChar = {PASSIVE_COOLING, "BrandX"};
+    testing::internal::CaptureStdout();
+    checkAndAlert(TO_CONTROLLER, batteryChar, 40);
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "feed : 2\n");  // TOO_HIGH corresponds to 2
+}
+
+// Test case for checkAndAlert to controller with low temperature
+TEST(TypeWiseAlertTestSuite, CheckAndAlertToControllerLow) {
+    BatteryCharacter batteryChar = {PASSIVE_COOLING, "BrandX"};
+    testing::internal::CaptureStdout();
+    checkAndAlert(TO_CONTROLLER, batteryChar, -5);
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "feed : 1\n");  // TOO_LOW corresponds to 1
 }
 
 // Test case for checkAndAlert to email with low temperature
@@ -146,6 +149,15 @@ TEST(TypeWiseAlertTestSuite, CheckAndAlertToEmailNormal) {
     BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "BrandX"};
     testing::internal::CaptureStdout();
     checkAndAlert(TO_EMAIL, batteryChar, 30);
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "");  // No output for NORMAL
+}
+
+// Test case for checkAndAlert to email with normal temperature for passive cooling
+TEST(TypeWiseAlertTestSuite, CheckAndAlertToEmailNormalPassiveCooling) {
+    BatteryCharacter batteryChar = {PASSIVE_COOLING, "BrandX"};
+    testing::internal::CaptureStdout();
+    checkAndAlert(TO_EMAIL, batteryChar, 20);
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output, "");  // No output for NORMAL
 }
