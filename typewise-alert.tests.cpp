@@ -7,12 +7,12 @@ TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToLow) {
 }
 
 TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToHIGH) {
-  TemperatureRange range = {0, 35};  // lower limit 0, upper limit 36
+  TemperatureRange range = {0, 35}; 
   EXPECT_EQ(inferBreach(36, range), TOO_HIGH);
 }
 
 TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToNormal) {
-  TemperatureRange range = {0, 35};  // lower limit 0, upper limit 36
+  TemperatureRange range = {0, 35};
   EXPECT_EQ(inferBreach(20, range), NORMAL);
 }
 TEST(TypewiseAlertTest, ClassifyTemperatureBreachPassiveCooling) {
@@ -78,4 +78,23 @@ TEST(SendToControllerTest, SendsNormalBreach) {
     sendToController(NORMAL);  // Assuming NORMAL is represented by 0
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output, "feed : 0\n");
+}
+// Test case for getTemperatureRange function
+TEST(TemperatureRangeTest, GetTemperatureRange) {
+    TemperatureRange range;
+
+    // Test for PASSIVE_COOLING
+    range = getTemperatureRange(PASSIVE_COOLING);
+    EXPECT_EQ(range.lowerLimit, 0);
+    EXPECT_EQ(range.upperLimit, 35);
+
+    // Test for HI_ACTIVE_COOLING
+    range = getTemperatureRange(HI_ACTIVE_COOLING);
+    EXPECT_EQ(range.lowerLimit, 0);
+    EXPECT_EQ(range.upperLimit, 45);
+
+    // Test for MED_ACTIVE_COOLING
+    range = getTemperatureRange(MED_ACTIVE_COOLING);
+    EXPECT_EQ(range.lowerLimit, 0);
+    EXPECT_EQ(range.upperLimit, 40);
 }
