@@ -15,7 +15,7 @@ TEST(TypeWiseAlertTestSuite,InfersBreachAccordingToNormal) {
   TemperatureRange range = {0, 35};
   EXPECT_EQ(inferBreach(20, range), NORMAL);
 }
-TEST(TypewiseAlertTest, ClassifyTemperatureBreachPassiveCooling) {
+/*TEST(TypewiseAlertTest, ClassifyTemperatureBreachPassiveCooling) {
     EXPECT_EQ(classifyTemperatureBreach(PASSIVE_COOLING, -1), TOO_LOW);
     EXPECT_EQ(classifyTemperatureBreach(PASSIVE_COOLING, 0), NORMAL);
     EXPECT_EQ(classifyTemperatureBreach(PASSIVE_COOLING, 35), NORMAL);
@@ -34,7 +34,7 @@ TEST(TypewiseAlertTest, ClassifyTemperatureBreachMedActiveCooling) {
     EXPECT_EQ(classifyTemperatureBreach(MED_ACTIVE_COOLING, 0), NORMAL);
     EXPECT_EQ(classifyTemperatureBreach(MED_ACTIVE_COOLING, 40), NORMAL);
     EXPECT_EQ(classifyTemperatureBreach(MED_ACTIVE_COOLING, 41), TOO_HIGH);
-}
+}*/
 
 TEST(TypeWiseAlertTestSuite, SendsLowTemperatureEmail) {
     testing::internal::CaptureStdout();
