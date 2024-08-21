@@ -149,3 +149,10 @@ TEST(TypeWiseAlertTestSuite, CheckAndAlertToEmailNormal) {
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output, "");  // No output for NORMAL
 }
+TEST(TypeWiseAlertTestSuite, CheckAndAlertInvalidTarget) {
+    BatteryCharacter batteryChar = {HI_ACTIVE_COOLING, "BrandX"};
+    testing::internal::CaptureStdout();
+    checkAndAlert(static_cast<AlertTarget>(999), batteryChar, 50); // Trigger invalid case
+    // No particular output to check, just ensuring the branch is covered
+}
+
