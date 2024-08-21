@@ -152,7 +152,7 @@ TEST(TypeWiseAlertTestSuite, CheckAndAlertToEmailNormal) {
 TEST(TypeWiseAlertTestSuite, CheckAndAlertInvalidTarget) {
     BatteryCharacter batteryChar = {HI_ACTIVE_COOLING, "BrandX"};
     testing::internal::CaptureStdout();
-    checkAndAlert(999), batteryChar, 50); // Trigger invalid case
+    checkAndAlert(999, batteryChar, 50); // Trigger invalid case
     // No particular output to check, just ensuring the branch is covered
 }
 
